@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Kỹ Thuật Số | Phan Thị Bảo Trâm</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-900: #1a3a2a;
+    --green-700: #2d6a4f;
+    --green-500: #52b788;
+    --green-300: #95d5b2;
+    --green-100: #d8f3dc;
+    --green-50: #f0faf4;
+    --cream: #faf8f2;
+    --cream-dark: #f0ede3;
+    --text-dark: #1a1a1a;
+    --text-mid: #444;
+    --text-light: #777;
+    --white: #fff;
+    --border: rgba(0,0,0,0.1);
+    --shadow: 0 4px 24px rgba(0,0,0,0.08);
+    --radius: 12px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(250,248,242,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 700;
+    color: var(--green-700);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: var(--text-mid);
+    font-size: 0.9rem; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--green-700); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 6rem 4rem 4rem;
+    background: linear-gradient(135deg, var(--green-50) 0%, var(--cream) 60%);
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -100px; right: -100px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: var(--green-100);
+    opacity: 0.4;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -50px; left: 10%;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: var(--green-300);
+    opacity: 0.2;
+  }
+  .hero-content { max-width: 820px; position: relative; z-index: 1; }
+  .hero-tag {
+    display: inline-block;
+    background: var(--green-700); color: var(--white);
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 16px; border-radius: 100px;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 6vw, 4.7rem);
+    font-weight: 900; line-height: 1.1;
+    color: var(--green-900);
+    margin-bottom: 1.25rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--green-700); }
+  .hero-desc {
+    font-size: 1.05rem; color: var(--text-mid);
+    max-width: 700px; margin-bottom: 2.2rem; line-height: 1.85;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--green-700); color: var(--white);
+    padding: 14px 32px; border-radius: 100px;
+    text-decoration: none; font-weight: 600; font-size: 0.95rem;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { background: var(--green-900); transform: translateY(-2px); }
+  .btn-secondary {
+    background: transparent; color: var(--green-700);
+    border: 2px solid var(--green-700);
+    padding: 12px 28px; border-radius: 100px;
+    text-decoration: none; font-weight: 600; font-size: 0.95rem;
+    transition: all 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-secondary:hover { background: var(--green-50); }
+
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 3.2rem;
+    padding-top: 2rem; border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.1rem; font-weight: 700; color: var(--green-700);
+    display: block;
+  }
+  .stat-lbl { font-size: 0.85rem; color: var(--text-light); }
+
+  /* SECTION COMMONS */
+  section { padding: 6rem 4rem; }
+  .section-label {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--green-700);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700; color: var(--green-900);
+    margin-bottom: 1rem; line-height: 1.2;
+  }
+  .section-sub {
+    font-size: 1rem; color: var(--text-mid);
+    max-width: 900px; margin-bottom: 3rem; line-height: 1.9;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  /* ABOUT */
+  #about { background: var(--white); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1.4fr;
+    gap: 5rem; align-items: start; margin-top: 1rem;
+  }
+  .about-avatar {
+    width: 100%; aspect-ratio: 3/4;
+    background: var(--green-100);
+    border-radius: 20px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .about-avatar::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 40%;
+    background: linear-gradient(transparent, var(--green-300));
+    opacity: 0.3;
+  }
+  .avatar-placeholder {
+    font-size: 0.92rem; color: var(--green-700);
+    text-align: center; padding: 1.25rem;
+    font-weight: 600;
+  }
+  .about-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--green-900);
+  }
+  .about-info .role {
+    color: var(--green-700); font-weight: 600; font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .about-info p { color: var(--text-mid); margin-bottom: 1rem; line-height: 1.9; }
+  .about-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+  .tag {
+    background: var(--green-50); color: var(--green-700);
+    border: 1px solid var(--green-300);
+    padding: 6px 14px; border-radius: 100px;
+    font-size: 0.82rem; font-weight: 500;
+  }
+  .info-row { display: flex; gap: 2rem; flex-wrap: wrap; margin: 1.5rem 0; }
+  .info-item { display: flex; flex-direction: column; }
+  .info-item .label { font-size: 0.78rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.06em; }
+  .info-item .value { font-weight: 600; color: var(--text-dark); margin-top: 2px; }
+
+  /* GOALS */
+  .goals-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem; margin-top: 1rem;
+  }
+  .goal-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.75rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .goal-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+  .goal-icon {
+    width: 48px; height: 48px;
+    background: var(--green-100); border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 1rem;
+  }
+  .goal-card h4 { font-weight: 600; margin-bottom: 0.5rem; color: var(--green-900); }
+  .goal-card p { font-size: 0.92rem; color: var(--text-mid); line-height: 1.85; }
+
+  /* PROJECTS */
+  #projects { background: var(--cream); }
+  .projects-grid { display: grid; gap: 2rem; margin-top: 1rem; }
+  .project-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 16px; overflow: hidden;
+    display: grid; grid-template-columns: 280px 1fr;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .project-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+  .project-thumb {
+    background: var(--green-100);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 2rem;
+    position: relative; overflow: hidden;
+  }
+  .project-thumb::before {
+    content: '';
+    position: absolute; width: 200px; height: 200px;
+    background: var(--green-300); border-radius: 50%;
+    top: -80px; right: -60px; opacity: 0.4;
+  }
+  .project-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem; font-weight: 900;
+    color: var(--green-300); line-height: 1;
+    position: relative; z-index: 1;
+  }
+  .project-subject {
+    font-size: 0.8rem; font-weight: 600; color: var(--green-700);
+    text-transform: uppercase; letter-spacing: 0.08em;
+    position: relative; z-index: 1; margin-top: 0.5rem;
+    text-align: center;
+  }
+  .project-body { padding: 2rem 2.5rem; }
+  .project-meta { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; flex-wrap: wrap; }
+  .project-badge {
+    font-size: 0.72rem; font-weight: 600;
+    background: var(--green-700); color: var(--white);
+    padding: 3px 10px; border-radius: 100px;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .project-chapter { font-size: 0.82rem; color: var(--text-light); }
+  .project-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; margin-bottom: 0.75rem; color: var(--green-900);
+  }
+  .project-body p { font-size: 0.95rem; color: var(--text-mid); margin-bottom: 1rem; line-height: 1.9; }
+  .project-result {
+    background: var(--green-50); border-left: 3px solid var(--green-700);
+    padding: 0.75rem 1rem; border-radius: 0 8px 8px 0;
+    margin-bottom: 1.25rem;
+  }
+  .project-result strong { font-size: 0.8rem; color: var(--green-700); display: block; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .project-result span { font-size: 0.92rem; color: var(--text-mid); }
+  .project-skills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .skill-chip {
+    background: var(--cream-dark); color: var(--text-mid);
+    padding: 4px 12px; border-radius: 100px;
+    font-size: 0.78rem; font-weight: 500;
+  }
+  .project-body ul { margin: 0.5rem 0 1.25rem 1.2rem; color: var(--text-mid); }
+  .project-body li { margin: 0.25rem 0; }
+
+  /* REFLECTION */
+  #reflection { background: var(--green-900); color: var(--white); }
+  #reflection .section-label { color: var(--green-300); }
+  #reflection .section-title { color: var(--white); }
+  #reflection .section-sub { color: rgba(255,255,255,0.78); }
+  .reflection-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 1rem;
+  }
+  .reflection-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius); padding: 2rem;
+  }
+  .reflection-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+  .reflection-card h4 { font-weight: 600; margin-bottom: 0.75rem; color: var(--green-300); }
+  .reflection-card p { font-size: 0.95rem; color: rgba(255,255,255,0.78); line-height: 1.9; }
+
+  .principles-list {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius); padding: 2rem;
+    margin-top: 2rem;
+  }
+  .principles-list h4 { color: var(--green-300); margin-bottom: 1.25rem; font-weight: 600; }
+  .principle-item {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .principle-item:last-child { border-bottom: none; }
+  .principle-num {
+    width: 28px; height: 28px; flex-shrink: 0;
+    background: var(--green-700); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; font-weight: 700; color: var(--white);
+  }
+  .principle-item p { font-size: 0.92rem; color: rgba(255,255,255,0.78); line-height: 1.8; }
+
+  /* LINKS */
+  #links { background: var(--white); }
+  .links-flex { display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 1rem; }
+  .link-card {
+    flex: 1; min-width: 220px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius); padding: 1.5rem;
+    text-decoration: none; color: inherit;
+    transition: all 0.2s;
+    display: flex; flex-direction: column; align-items: flex-start; gap: 0.75rem;
+  }
+  .link-card:hover {
+    border-color: var(--green-700);
+    background: var(--green-50);
+    transform: translateY(-3px);
+  }
+  .link-card-icon {
+    width: 44px; height: 44px;
+    background: var(--green-100); border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+  }
+  .link-card strong { font-weight: 600; font-size: 0.95rem; color: var(--green-900); }
+  .link-card span { font-size: 0.82rem; color: var(--text-light); }
+
+  /* FOOTER */
+  footer {
+    background: var(--green-900); color: rgba(255,255,255,0.6);
+    text-align: center; padding: 2rem;
+    font-size: 0.85rem;
+  }
+  footer strong { color: var(--green-300); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    section { padding: 4rem 1.5rem; }
+    .hero { padding: 5rem 1.5rem 3rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .project-card { grid-template-columns: 1fr; }
+    .project-thumb { padding: 2.5rem; flex-direction: row; gap: 1rem; }
+    .reflection-grid { grid-template-columns: 1fr; }
+    nav { padding: 0 1rem; }
+    .nav-links { gap: 1rem; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <a href="#home" class="nav-logo">Bảo Trâm</a>
+  <ul class="nav-links">
+    <li><a href="#about">Giới thiệu</a></li>
+    <li><a href="#projects">Dự án</a></li>
+    <li><a href="#reflection">Tổng kết</a></li>
+    <li><a href="#links">Liên kết</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="hero-content">
+    <span class="hero-tag">Bài tập dự án cá nhân · Portfolio số</span>
+    <h1>Hành trình học tập<br>trong <em>kỷ nguyên số</em></h1>
+    <p class="hero-desc">
+      Đây là Portfolio tổng hợp kiến thức, kỹ năng và sản phẩm học tập trong môn
+      <strong>Nhập môn Công nghệ số và Ứng dụng Trí tuệ nhân tạo</strong>.
+      Portfolio giúp hệ thống hóa quá trình học tập, thể hiện khả năng ứng dụng công nghệ số và công cụ AI,
+      đồng thời là nền tảng để phát triển kỹ năng phục vụ cho học tập và công việc sau này.
+    </p>
+
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">Xem 6 bài tập →</a>
+      <a href="#about" class="btn-secondary">Về tôi</a>
+    </div>
+
+    <div class="hero-stats">
+      <div>
+        <span class="stat-num">6</span>
+        <span class="stat-lbl">Bài tập thành phần</span>
+      </div>
+      <div>
+        <span class="stat-num">3</span>
+        <span class="stat-lbl">Phần nội dung chính</span>
+      </div>
+      <div>
+        <span class="stat-num">AI</span>
+        <span class="stat-lbl">Ứng dụng có trách nhiệm</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">I. Giới thiệu bản thân</div>
+    <h2 class="section-title">Về tôi</h2>
+
+    <div class="about-grid">
+      <div>
+        <div class="about-avatar">
+          <!-- Nếu muốn chèn ảnh thật, thay cả khối này bằng:
+               <img src="avatar.jpg" alt="Ảnh đại diện" style="width:100%;height:100%;object-fit:cover;">
+          -->
+          <div class="avatar-placeholder">
+            📸<br><br>
+            Thêm ảnh của bạn tại đây<br>
+            <span style="font-weight:500; opacity:0.75;">(khuyến nghị tỉ lệ 3:4)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-info">
+        <h3>Phan Thị Bảo Trâm</h3>
+        <div class="role">Tài Chính Ngân Hàng · Đại Học Kinh Tế – Đại Học Quốc Gia Hà Nội</div>
+
+        <p><strong>Trường:</strong> Đại Học Kinh Tế – Đại Học Quốc Gia Hà Nội</p>
+        <p><strong>Ngành học:</strong> Tài Chính Ngân Hàng</p>
+        <p><strong>Sở thích:</strong> Chơi Thể Thao, Nghe Nhạc, Đi Du Lịch</p>
+
+        <div class="info-row">
+          <div class="info-item">
+            <span class="label">Họ và tên</span>
+            <span class="value">Phan Thị Bảo Trâm</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Ngành học</span>
+            <span class="value">Tài Chính Ngân Hàng</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Email</span>
+            <span class="value">[bạn điền email tại đây nếu cần]</span>
+          </div>
+        </div>
+
+        <div class="about-tags">
+          <span class="tag">Quản lý tệp</span>
+          <span class="tag">Tìm kiếm học thuật</span>
+          <span class="tag">Prompt AI</span>
+          <span class="tag">Hợp tác trực tuyến</span>
+          <span class="tag">Sáng tạo nội dung</span>
+          <span class="tag">AI có trách nhiệm</span>
+          <span class="tag">Liêm chính học thuật</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 4rem;">
+      <div class="section-label">Mục tiêu học tập & định hướng cá nhân</div>
+      <div class="goals-grid">
+        <div class="goal-card">
+          <div class="goal-icon">🎯</div>
+          <h4>Mục tiêu học tập và định hướng cá nhân</h4>
+          <p>
+            Là sinh viên, em đặt mục tiêu học tập là nắm vững kiến thức chuyên môn, rèn luyện kỹ năng cần thiết và đạt kết quả tốt.
+            Bên cạnh đó, em chú trọng phát triển kỹ năng mềm và tích lũy kinh nghiệm thực tế để chuẩn bị cho công việc sau khi tốt nghiệp.
+            Về định hướng cá nhân, em mong muốn tìm được công việc phù hợp với ngành học và có cơ hội phát triển bản thân lâu dài.
+          </p>
+        </div>
+        <div class="goal-card">
+          <div class="goal-icon">📂</div>
+          <h4>Mục tiêu của bài Portfolio</h4>
+          <p>
+            Mục tiêu của Portfolio này là tổng hợp và trình bày các kiến thức, kỹ năng và sản phẩm học tập của em trong môn
+            Nhập môn Công nghệ số và Ứng dụng Trí tuệ nhân tạo. Portfolio giúp em hệ thống hóa quá trình học tập,
+            thể hiện khả năng ứng dụng công nghệ số và công cụ AI, đồng thời là cơ sở để phát triển kỹ năng phục vụ cho học tập
+            và công việc sau này.
+          </p>
+        </div>
+        <div class="goal-card">
+          <div class="goal-icon">🌟</div>
+          <h4>Điều em hướng đến</h4>
+          <p>
+            Xây dựng thói quen học tập số hiệu quả: tổ chức tài liệu khoa học, tìm kiếm thông tin có kiểm chứng,
+            và sử dụng AI đúng mục đích – đúng đạo đức trong môi trường học thuật.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label">II. Dự án</div>
+    <h2 class="section-title">6 Bài tập thành phần</h2>
+    <p class="section-sub">
+      Dưới đây là tổng hợp nội dung theo đúng bài làm bạn cung cấp, được trình bày dạng “project card” để dễ đọc và đẹp mắt.
+    </p>
+
+    <div class="projects-grid">
+
+      <!-- BÀI 1 -->
+      <div class="project-card">
+        <div class="project-thumb">
+          <div class="project-num">01</div>
+          <div class="project-subject">Bài tập 1.4</div>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-badge">Bài 1</span>
+            <span class="project-chapter">Thao tác cơ bản với tệp tin và thư mục</span>
+          </div>
+          <h3>Thao tác cơ bản với tệp tin và thư mục</h3>
+          <p>
+            Cấu trúc thư mục được thiết kế để tổ chức tài liệu học tập theo logic <strong>Năm học &gt; Học kỳ &gt; Môn học</strong>.
+          </p>
+
+          <div class="project-result">
+            <strong>✦ Cấu trúc & quy tắc đặt tên</strong>
+            <span>
+              Thư mục gốc <code>ThucHanh_NguyenVanA_LopIT2024</code> giúp dễ nhận dạng theo Tên và Lớp.
+              Cấp 1 chia theo năm học <code>2024-2025</code>; Cấp 2 kết hợp học kỳ và môn học (ví dụ <code>HK1_MonHocA</code>).
+              Quy tắc đặt tên tệp: <strong>[Loại tài liệu]*[Ngày/Mã]*[Tên tài liệu].ext</strong>
+              (ví dụ <code>BaoCao_Bai1.docx</code>, <code>Note_20250104.txt</code>) để nhất quán và dễ sắp xếp.
+            </span>
+          </div>
+
+          <div class="project-skills">
+            <span class="skill-chip">File Organization</span>
+            <span class="skill-chip">Naming Convention</span>
+            <span class="skill-chip">Data Management</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- BÀI 2 -->
+      <div class="project-card">
+        <div class="project-thumb">
+          <div class="project-num">02</div>
+          <div class="project-subject">Bài tập 2.4</div>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-badge">Bài 2</span>
+            <span class="project-chapter">Tìm kiếm & đánh giá thông tin học thuật</span>
+          </div>
+          <h3>Tìm kiếm và đánh giá thông tin học thuật</h3>
+
+          <p><strong>Chủ đề:</strong> “Tác động của Generative Adversarial Networks (GANs) đối với lĩnh vực tổng hợp dữ liệu y tế và các vấn đề đạo đức liên quan.”</p>
+
+          <div class="project-result">
+            <strong>✦ Tổng hợp nguồn (10 tài liệu / 4 nhóm)</strong>
+            <span>
+              <ul>
+                <li><strong>Cơ sở dữ liệu học thuật:</strong> Google Scholar, Microsoft Academic (5 bài báo)</li>
+                <li><strong>Tạp chí khoa học chuyên ngành:</strong> IEEE Transactions on Medical Imaging, Nature Medicine (2 bài báo)</li>
+                <li><strong>Sách chuyên khảo:</strong> Sách về Deep Learning/Y học tính toán (1 chương sách)</li>
+                <li><strong>Nguồn mở trên internet:</strong> Báo cáo WHO, white paper (2 báo cáo/kỷ yếu)</li>
+              </ul>
+            </span>
+          </div>
+
+          <p><strong>Phân tích đánh giá độ tin cậy (ví dụ):</strong></p>
+          <ul>
+            <li><strong>TL1</strong> – <em>Generative Adversarial Nets</em>: 5/5 (Tuyệt đối) – bài báo gốc, ảnh hưởng lớn.</li>
+            <li><strong>TL2</strong> – <em>GANs in Clinical Data Synthesis</em>: 4/5 (Rất cao) – IEEE uy tín, phương pháp rõ.</li>
+            <li><strong>TL4</strong> – <em>Ethical Guidance for AI in Health</em>: 4/5 (Rất cao) – WHO có thẩm quyền.</li>
+            <li><strong>TL6</strong> – <em>Challenges of Synthetic Data</em>: 3/5 (Cao) – pre-print chưa peer-review.</li>
+            <li><strong>TL8</strong> – Blog cá nhân: 1/5 (Thấp) – tác giả/biên tập không rõ.</li>
+          </ul>
+
+          <div class="project-skills">
+            <span class="skill-chip">Academic Research</span>
+            <span class="skill-chip">Source Evaluation</span>
+            <span class="skill-chip">Critical Thinking</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- BÀI 3 -->
+      <div class="project-card">
+        <div class="project-thumb">
+          <div class="project-num">03</div>
+          <div class="project-subject">Bài tập 3.4</div>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-badge">Bài 3</span>
+            <span class="project-chapter">Viết prompt hiệu quả</span>
+          </div>
+          <h3>Viết prompt hiệu quả cho tác vụ học tập</h3>
+
+          <p><strong>Mục đích:</strong> Lập dàn ý thuyết trình hiệu quả</p>
+          <p><strong>Nhiệm vụ:</strong> Lập dàn ý chi tiết cho bài thuyết trình 15 phút về “Tác động của Trí tuệ Nhân tạo đối với Thị trường Lao động”.</p>
+
+          <div class="project-result">
+            <strong>✦ Prompt ban đầu (chưa tốt)</strong>
+            <span>
+              “Làm dàn ý thuyết trình về chủ đề AI và việc làm. Dài 15 phút.”<br>
+              Vấn đề: thiếu ngữ cảnh, thiếu đối tượng, thiếu cấu trúc và phân bổ thời gian.
+            </span>
+          </div>
+
+          <div class="project-result">
+            <strong>✦ Prompt cải thiện (hiệu quả)</strong>
+            <span>
+              Chỉ định vai trò “chuyên gia tư vấn chiến lược nhân sự”, nêu rõ đối tượng (ban lãnh đạo),
+              yêu cầu 5 phần/10–12 slide, phân bổ thời gian, có dữ liệu minh họa và hành động chiến lược trong kết luận.
+            </span>
+          </div>
+
+          <p>
+            <strong>Giải thích vì sao hiệu quả hơn:</strong> nhờ “ngữ cảnh hóa”, chỉ định vai trò chuyên gia,
+            xác định đối tượng mục tiêu, kiểm soát thời gian và yêu cầu chiều sâu (dữ liệu/ví dụ).
+          </p>
+
+          <div class="project-skills">
+            <span class="skill-chip">Prompt Engineering</span>
+            <span class="skill-chip">Role Prompting</span>
+            <span class="skill-chip">Structure Control</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- BÀI 4 -->
+      <div class="project-card">
+        <div class="project-thumb">
+          <div class="project-num">04</div>
+          <div class="project-subject">Bài tập 4.4</div>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-badge">Bài 4</span>
+            <span class="project-chapter">Hợp tác trực tuyến (Trello)</span>
+          </div>
+          <h3>Sử dụng công cụ hợp tác trực tuyến cho dự án nhóm</h3>
+
+          <p><strong>Mô tả dự án:</strong> Nhóm 4 thành viên, thực hiện 2 tuần, mục tiêu hoàn thành bài thuyết trình và báo cáo môn học. Dùng Trello để lập kế hoạch và theo dõi tiến độ.</p>
+
+          <div class="project-result">
+            <strong>✦ Cách triển khai trên Trello</strong>
+            <span>
+              <ul>
+                <li>Tạo cột: <strong>Việc cần làm – Đang thực hiện – Hoàn thành</strong></li>
+                <li>Mỗi nhiệm vụ là một card, gán người phụ trách</li>
+                <li>Thêm mô tả, deadline, checklist</li>
+                <li>Kéo-thả card giữa các cột để cập nhật tiến độ</li>
+                <li>Bình luận trực tiếp và chia sẻ link/tài liệu ngay trong card</li>
+              </ul>
+            </span>
+          </div>
+
+          <p><strong>Kết luận:</strong> Trello giúp tổ chức công việc khoa học, theo dõi tiến độ rõ ràng và nâng cao hiệu quả làm việc nhóm.</p>
+
+          <div class="project-skills">
+            <span class="skill-chip">Team Collaboration</span>
+            <span class="skill-chip">Project Tracking</span>
+            <span class="skill-chip">Workflow</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- BÀI 5 -->
+      <div class="project-card">
+        <div class="project-thumb">
+          <div class="project-num">05</div>
+          <div class="project-subject">Bài tập 5.4</div>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-badge">Bài 5</span>
+            <span class="project-chapter">Sáng tạo nội dung với AI tạo sinh</span>
+          </div>
+          <h3>Sử dụng công cụ AI tạo sinh để hỗ trợ sáng tạo nội dung</h3>
+
+          <p>
+            Quy trình sáng tạo được đẩy nhanh nhờ công cụ AI tạo sinh, giúp chuyển trọng tâm từ “tạo ra” sang “tinh chỉnh và thêm giá trị cá nhân”.
+          </p>
+
+          <div class="project-result">
+            <strong>✦ Công cụ đã dùng (tối thiểu 3)</strong>
+            <span>
+              <ul>
+                <li><strong>AI hình ảnh (Midjourney/DALL·E 3):</strong> tạo hình minh họa & concept nghệ thuật</li>
+                <li><strong>AI thiết kế (Canva AI/Adobe Firefly):</strong> đề xuất bố cục và hỗ trợ chỉnh sửa</li>
+                <li><strong>Prompt ví dụ:</strong> <code>minimalist concept art of a robot hand creating a digital painting...</code></li>
+              </ul>
+            </span>
+          </div>
+
+          <div class="project-result">
+            <strong>✦ Đóng góp cá nhân (40% giá trị gia tăng)</strong>
+            <span>
+              <ul>
+                <li><strong>Tính xác thực:</strong> cập nhật số liệu từ nguồn uy tín (không phụ thuộc AI)</li>
+                <li><strong>Thẩm mỹ & cá nhân hóa:</strong> tự thiết kế bảng màu, font chữ, tinh chỉnh bố cục</li>
+                <li><strong>Dẫn chuyện:</strong> sắp xếp nội dung để tạo cấu trúc câu chuyện logic, hấp dẫn</li>
+              </ul>
+            </span>
+          </div>
+
+          <p><strong>Kết luận:</strong> Tối ưu thời gian nhờ AI nhưng vẫn kiểm soát chất lượng, thẩm mỹ và tính xác thực.</p>
+
+          <div class="project-skills">
+            <span class="skill-chip">Generative AI</span>
+            <span class="skill-chip">Design</span>
+            <span class="skill-chip">Prompting</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- BÀI 6 -->
+      <div class="project-card">
+        <div class="project-thumb">
+          <div class="project-num">06</div>
+          <div class="project-subject">Bài tập 6.4</div>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-badge">Bài 6</span>
+            <span class="project-chapter">AI có trách nhiệm</span>
+          </div>
+          <h3>Sử dụng AI có trách nhiệm trong học tập và nghiên cứu</h3>
+
+          <p>
+            Nhiều trường đại học cho phép sử dụng AI như công cụ hỗ trợ học tập nhưng không chấp nhận dùng AI tạo toàn bộ bài làm để nộp như sản phẩm cá nhân.
+            Ví dụ: <strong>Stanford University</strong> cho phép AI hỗ trợ gợi ý ý tưởng, giải thích, chỉnh sửa, nhưng sinh viên chịu trách nhiệm hoàn toàn về nội dung học thuật.
+          </p>
+
+          <div class="project-result">
+            <strong>✦ Vấn đề đạo đức khi dùng AI</strong>
+            <span>
+              Đạo văn, tính xác thực (AI có thể sai), công bằng trong tiếp cận công cụ, và minh bạch trong việc công khai sử dụng AI.
+            </span>
+          </div>
+
+          <div class="project-result">
+            <strong>✦ Bộ nguyên tắc cá nhân</strong>
+            <span>
+              <ol style="margin:0.6rem 0 0.2rem 1.2rem; color: var(--text-mid);">
+                <li>Sử dụng AI như công cụ hỗ trợ, không thay thế tư duy và nỗ lực cá nhân.</li>
+                <li>Không sao chép nguyên văn nội dung do AI tạo ra để nộp bài.</li>
+                <li>Luôn kiểm tra và đối chiếu thông tin do AI cung cấp với tài liệu đáng tin cậy.</li>
+                <li>Tuân thủ quy định và chính sách sử dụng AI của nhà trường.</li>
+                <li>Sử dụng AI minh bạch, trung thực trong học tập.</li>
+                <li>Không lạm dụng AI trong bài kiểm tra/đánh giá cá nhân hoặc hoạt động bị cấm.</li>
+                <li>Xem AI là công cụ phát triển kỹ năng tự học và tư duy phản biện lâu dài.</li>
+              </ol>
+            </span>
+          </div>
+
+          <div class="project-skills">
+            <span class="skill-chip">AI Ethics</span>
+            <span class="skill-chip">Academic Integrity</span>
+            <span class="skill-chip">Privacy</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- REFLECTION -->
+<section id="reflection">
+  <div class="container">
+    <div class="section-label">III. Tổng kết</div>
+    <h2 class="section-title">Nhìn lại hành trình</h2>
+    <p class="section-sub">
+      Trong quá trình thực hiện dự án Portfolio cá nhân cho môn Nhập môn Công nghệ số và Ứng dụng Trí tuệ nhân tạo,
+      mình đã hệ thống lại kiến thức và kỹ năng đã học thông qua các bài tập thực hành. Dự án không chỉ giúp mình hoàn thành học phần
+      mà còn tạo ra một sản phẩm số có thể sử dụng lâu dài.
+    </p>
+
+    <div class="reflection-grid">
+      <div class="reflection-card">
+        <div class="reflection-icon">🧩</div>
+        <h4>Những kỹ năng đã học được</h4>
+        <p>
+          Thông qua Portfolio, mình học được cách tổ chức tệp tin khoa học, tìm kiếm và đánh giá thông tin học thuật,
+          viết prompt hiệu quả khi làm việc với AI, sử dụng công cụ cộng tác trực tuyến và ứng dụng AI vào sáng tạo nội dung.
+          Đặc biệt, mình hiểu rõ hơn tầm quan trọng của việc sử dụng AI một cách có trách nhiệm trong học tập.
+        </p>
+      </div>
+      <div class="reflection-card">
+        <div class="reflection-icon">🌟</div>
+        <h4>Điều tâm đắc nhất</h4>
+        <p>
+          Phần mình tâm đắc nhất là việc tích hợp các bài tập thành một Portfolio hoàn chỉnh, giúp mình nhìn rõ sự tiến bộ của bản thân.
+          Dù gặp một số khó khăn trong việc sắp xếp nội dung và lựa chọn công cụ, dự án đã giúp mình rèn luyện tư duy chủ động
+          và kỹ năng học tập số.
+        </p>
+      </div>
+      <div class="reflection-card">
+        <div class="reflection-icon">📌</div>
+        <h4>Kết luận chung</h4>
+        <p>
+          Nhìn chung, đây là một trải nghiệm học tập hữu ích, tạo nền tảng cho việc học tập và làm việc trong tương lai.
+        </p>
+      </div>
+      <div class="reflection-card">
+        <div class="reflection-icon">🛡️</div>
+        <h4>Nhấn mạnh về AI có trách nhiệm</h4>
+        <p>
+          Khi sử dụng AI, mình luôn ưu tiên minh bạch, kiểm chứng thông tin và tuân thủ quy định học thuật.
+          AI là công cụ hỗ trợ giúp học tốt hơn, nhưng không thay thế trách nhiệm và tư duy của người học.
+        </p>
+      </div>
+    </div>
+
+    <div class="principles-list">
+      <h4>📋 Bộ nguyên tắc cá nhân: Sử dụng AI có trách nhiệm</h4>
+      <div class="principle-item">
+        <div class="principle-num">1</div>
+        <p><strong>AI hỗ trợ:</strong> Không thay thế tư duy và nỗ lực cá nhân.</p>
+      </div>
+      <div class="principle-item">
+        <div class="principle-num">2</div>
+        <p><strong>Không sao chép:</strong> Không nộp nguyên văn nội dung do AI tạo.</p>
+      </div>
+      <div class="principle-item">
+        <div class="principle-num">3</div>
+        <p><strong>Kiểm chứng:</strong> Đối chiếu thông tin AI với tài liệu học thuật đáng tin cậy.</p>
+      </div>
+      <div class="principle-item">
+        <div class="principle-num">4</div>
+        <p><strong>Tuân thủ:</strong> Theo chính sách nhà trường và quy định học thuật.</p>
+      </div>
+      <div class="principle-item">
+        <div class="principle-num">5</div>
+        <p><strong>Minh bạch:</strong> Trung thực trong quá trình sử dụng AI.</p>
+      </div>
+      <div class="principle-item">
+        <div class="principle-num">6</div>
+        <p><strong>Không lạm dụng:</strong> Tránh dùng AI trong hoạt động bị cấm.</p>
+      </div>
+      <div class="principle-item">
+        <div class="principle-num">7</div>
+        <p><strong>Phát triển dài hạn:</strong> Dùng AI để tăng năng lực tự học và phản biện.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LINKS -->
+<section id="links">
+  <div class="container">
+    <div class="section-label">IV. Liên kết & Nộp bài</div>
+    <h2 class="section-title">Truy cập tài nguyên</h2>
+    <p class="section-sub">Bạn có thể thay các link dưới đây bằng link Portfolio/Drive/PDF thật của bạn (nếu có).</p>
+
+    <div class="links-flex">
+      <a href="[URL Portfolio của bạn]" class="link-card" target="_blank" rel="noopener">
+        <div class="link-card-icon">🌐</div>
+        <strong>Website Portfolio</strong>
+        <span>Trang chủ Portfolio kỹ thuật số</span>
+        <span style="color: var(--green-700); font-weight: 600; font-size: 0.8rem; margin-top: auto;">Mở liên kết →</span>
+      </a>
+      <a href="[Link Google Drive hoặc PDF]" class="link-card" target="_blank" rel="noopener">
+        <div class="link-card-icon">📄</div>
+        <strong>File báo cáo</strong>
+        <span>Tải xuống báo cáo/PDF dự án</span>
+        <span style="color: var(--green-700); font-weight: 600; font-size: 0.8rem; margin-top: auto;">Tải xuống →</span>
+      </a>
+      <a href="[Link tài liệu/nguồn]" class="link-card" target="_blank" rel="noopener">
+        <div class="link-card-icon">💻</div>
+        <strong>Tài liệu nguồn</strong>
+        <span>File và tài nguyên liên quan</span>
+        <span style="color: var(--green-700); font-weight: 600; font-size: 0.8rem; margin-top: auto;">Xem file →</span>
+      </a>
+      <a href="mailto:[email@example.com]" class="link-card">
+        <div class="link-card-icon">✉️</div>
+        <strong>Liên hệ</strong>
+        <span>Email liên hệ (nếu cần)</span>
+        <span style="color: var(--green-700); font-weight: 600; font-size: 0.8rem; margin-top: auto;">Gửi mail →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Portfolio Kỹ Thuật Số · <strong>Phan Thị Bảo Trâm</strong> · <strong>Đại Học Kinh Tế – ĐHQGHN</strong></p>
+</footer>
+
+</body>
+</html>
